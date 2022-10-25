@@ -13,7 +13,6 @@ export const checkNodeStatus = createAsyncThunk(
   async (node: Node) => {
     const response = await fetch(`${node.url}/api/v1/status`);
     const data: { node_name: string } = await response.json();
-    console.log("node status: ", data);
     return data;
   }
 );
