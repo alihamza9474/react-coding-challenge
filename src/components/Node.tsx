@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
@@ -12,6 +13,8 @@ import colors from "../constants/colors";
 import Status from "./Status";
 import { Node as NodeType } from "../types/Node";
 import Block from "./Block";
+
+import { getNodeBlocks } from "../reducers/nodes";
 
 type Props = {
   node: NodeType;
@@ -61,6 +64,13 @@ const TypographySecondaryHeading = styled(Typography)(({ theme }) => ({
 }));
 
 const Node: React.FC<Props> = ({ node, expanded, toggleNodeExpanded }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNodeBlocks(node));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <AccordionRoot
       elevation={3}

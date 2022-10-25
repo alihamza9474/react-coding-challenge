@@ -24,7 +24,7 @@ const Block = ({ block }: any) => {
       >
         {block?.id}
       </Box>
-      <div>{block?.description}</div>
+      <div>{block?.attributes?.data}</div>
     </Box>
   );
 };
